@@ -1,0 +1,14 @@
+{
+  "name": "Ferari Impianti",
+  "short_name": "Ferari",
+  "description": "Pronto intervento elettrico e idraulico 24/7 a Modena e Bologna",
+  "lang": "it",
+  "start_url": "/",
+  "display": "browser",
+  "background_color": "#11114d",
+  "theme_color": "#11114d",
+  "icons": [
+    { "src": "img/icon-192.png", "sizes": "192x192", "type": "image/png" },
+    { "src": "img/icon-512.png", "sizes": "512x512", "type": "image/png" }
+  ]
+}
