@@ -87,6 +87,7 @@
     var tot = Math.max(1, root.scrollHeight - window.innerHeight); root.style.setProperty('--sp', Math.min(1, y / tot).toFixed(4));
     if (mark && !reduce && y < window.innerHeight * 1.4) mark.style.transform = 'translate3d(0,' + (y * 0.22).toFixed(1) + 'px,0)';
     rail();
+    if (typeof aggiornaLab === 'function') aggiornaLab();
   }
 
   /* menu a schermo intero */
@@ -187,28 +188,39 @@
     if (utente) { manuale = true; if (auto) { clearInterval(auto); auto = null; } }
   }
   tabs.forEach(function (b) {
-    b.addEventListener('click', function () { setSys(b.getAttribute('data-sys'), true); });
-    b.addEventListener('mouseenter', function () { if (finePointer) setSys(b.getAttribute('data-sys'), true); });
     b.addEventListener('keydown', function (e) {
       var i = ORDINE.indexOf(b.getAttribute('data-sys')), n = -1;
       if (e.key === 'ArrowDown' || e.key === 'ArrowRight') n = (i + 1) % ORDINE.length;
       else if (e.key === 'ArrowUp' || e.key === 'ArrowLeft') n = (i + ORDINE.length - 1) % ORDINE.length;
-      if (n >= 0) { e.preventDefault(); setSys(ORDINE[n], true); $('#tab-' + ORDINE[n]).focus(); }
+      if (n >= 0) { e.preventDefault(); vaiA(ORDINE[n]); $('#tab-' + ORDINE[n]).focus(); }
     });
   });
-  if (lab && !reduce && 'IntersectionObserver' in window) {
-    var ioLab = new IntersectionObserver(function (entries) {
-      entries.forEach(function (en) {
-        if (en.isIntersecting && !manuale && !auto) {
-          auto = setInterval(function () {
-            var k = ORDINE[(ORDINE.indexOf(lab.getAttribute('data-active')) + 1) % ORDINE.length];
-            setSys(k, false);
-          }, 4800);
-        } else if (!en.isIntersecting && auto) { clearInterval(auto); auto = null; }
-      });
-    }, { threshold: 0.35 });
-    ioLab.observe(lab);
+  /* lo scorrimento sceglie il servizio: la sezione resta ferma e cambia categoria e disegno */
+  var track = $('#labTrack'), stick = $('.lab-stick');
+  function posizione() {
+    var hh = header ? header.offsetHeight : 76, r = track.getBoundingClientRect();
+    return { hh: hh, top: r.top + (window.pageYOffset || root.scrollTop), range: Math.max(1, r.height - stick.offsetHeight) };
   }
+  function aggiornaLab() {
+    if (!track || !lab) return;
+    var hh = header ? header.offsetHeight : 76, r = track.getBoundingClientRect();
+    var range = Math.max(1, r.height - stick.offsetHeight);
+    body.classList.toggle('lab-on', r.top < window.innerHeight * 0.9 && r.bottom > window.innerHeight * 0.2);
+    var p = (hh - r.top) / range;
+    if (p < -0.02 || p > 1.02) return;
+    var i = Math.max(0, Math.min(ORDINE.length - 1, Math.floor(Math.max(0, Math.min(0.9999, p)) * ORDINE.length)));
+    if (lab.getAttribute('data-active') !== ORDINE[i]) setSys(ORDINE[i], false);
+  }
+  function vaiA(k) {
+    var i = ORDINE.indexOf(k), q = posizione();
+    setSys(k, true);
+    window.scrollTo({ top: q.top - q.hh + ((i + 0.5) / ORDINE.length) * q.range, behavior: reduce ? 'auto' : 'smooth' });
+  }
+  tabs.forEach(function (b) {
+    var k = b.getAttribute('data-sys');
+    b.onclick = null;
+    b.addEventListener('click', function () { vaiA(k); });
+  });
 
   /* ---------- linea dei passaggi ---------- */
   var railEl = $('#rail');
