@@ -671,3 +671,5 @@ body.is-ready .bp-pop { animation: pop .9s var(--ease) forwards; animation-delay
 .form-err { color: #c5221f; font-size: .88rem; min-height: 1.3em; margin: 0; }
 
 .form-on .dock { transform: translateY(140%) !important; }
+
+.form-actions .btn { flex: 1 1 100%; }
