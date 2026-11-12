@@ -84,6 +84,7 @@
     var y = window.pageYOffset || root.scrollTop;
     if (header) header.classList.toggle('is-scrolled', y > 24);
     if (dock) dock.classList.toggle('is-on', y > 560);
+    var fs_ = $('#preventivo'); if (fs_) { var rr = fs_.getBoundingClientRect(); body.classList.toggle('form-on', rr.top < window.innerHeight * 0.9 && rr.bottom > window.innerHeight * 0.1); }
     var tot = Math.max(1, root.scrollHeight - window.innerHeight); root.style.setProperty('--sp', Math.min(1, y / tot).toFixed(4));
     if (mark && !reduce && y < window.innerHeight * 1.4) mark.style.transform = 'translate3d(0,' + (y * 0.22).toFixed(1) + 'px,0)';
     rail();
@@ -238,6 +239,44 @@
   }, { passive: true });
   window.addEventListener('resize', rail);
   onScroll();
+
+  /* ---------- modulo preventivo: prepara il messaggio, lo invia la persona ---------- */
+  var form = $('#formPrev');
+  if (form) {
+    var errEl = $('#formErr');
+    var valida = function () {
+      var primo = null;
+      ['nome', 'tel'].forEach(function (n) {
+        var i = form.elements[n], v = i.value.trim();
+        var male = n === 'tel' ? v.replace(/\D/g, '').length < 6 : v.length < 2;
+        i.classList.toggle('err', male);
+        if (male && !primo) primo = i;
+      });
+      errEl.textContent = primo ? 'Scrivi il tuo nome e un numero di telefono, così ti richiamiamo.' : '';
+      if (primo) primo.focus();
+      return !primo;
+    };
+    var testo = function () {
+      var s = form.querySelector('input[name="servizio"]:checked');
+      var t = 'Buongiorno, sono ' + form.elements.nome.value.trim() + ' (tel. ' + form.elements.tel.value.trim() + ').';
+      if (s) t += ' Mi serve: ' + s.value + '.';
+      var m = form.elements.msg.value.trim();
+      if (m) t += ' ' + m;
+      return t;
+    };
+    ['nome', 'tel'].forEach(function (n) { form.elements[n].addEventListener('input', function () { this.classList.remove('err'); errEl.textContent = ''; }); });
+    $$('[data-via]', form).forEach(function (b) {
+      b.addEventListener('click', function () {
+        if (!valida()) return;
+        var t = testo();
+        var url = b.getAttribute('data-via') === 'wa'
+          ? 'https://wa.me/393926322720?text=' + encodeURIComponent(t)
+          : 'mailto:ferarimpianti@gmail.com?subject=' + encodeURIComponent('Richiesta preventivo') + '&body=' + encodeURIComponent(t);
+        var a = doc.createElement('a'); a.href = url; if (b.getAttribute('data-via') === 'wa') { a.target = '_blank'; a.rel = 'noopener noreferrer'; }
+        doc.body.appendChild(a); a.click(); a.remove();
+      });
+    });
+  }
 
   /* ---------- varie ---------- */
   var y = $('#year'); if (y) y.textContent = new Date().getFullYear();
