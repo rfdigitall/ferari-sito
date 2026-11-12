@@ -171,7 +171,7 @@
     id: { t: 'Idraulico', p: 'Perdite, scarichi, allagamenti.', wa: 'Buongiorno, mi serve un idraulico.' },
     cl: { t: 'Climatizzazione', p: 'Installazione e manutenzione.', wa: 'Buongiorno, vorrei informazioni sulla climatizzazione.' },
     ca: { t: 'Caldaie e riscaldamento', p: 'Caldaie, scaldabagni, radiatori.', wa: 'Buongiorno, vorrei informazioni su caldaie e riscaldamento.' },
-    ci: { t: 'Civili e industriali', p: 'Per la casa, i condomini e le attività.', wa: 'Buongiorno, vorrei informazioni su un impianto civile o industriale.' },
+    ci: { t: 'Impianti civili', p: 'Per case, appartamenti e condomini.', wa: 'Buongiorno, vorrei informazioni su un impianto civile.' },
     pi: { t: 'Pronto intervento 24/7', p: 'Di notte, nei weekend, nei festivi.', wa: 'Buongiorno, ho bisogno di un intervento urgente.' }
   };
   var ORDINE = ['el', 'id', 'cl', 'ca', 'ci', 'pi'];
