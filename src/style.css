@@ -708,3 +708,4 @@ body.is-ready .bp-pop { animation: pop .9s var(--ease) forwards; animation-delay
 @media (max-width: 560px) { .rstage { --ch: 420px; } .rc { --step: calc(var(--cw) * .94); } .rc .btn { width: 100%; } }
 @media (min-width: 980px) { .rstage { --cw: 460px; } }
 @media (prefers-reduced-motion: reduce) { .rc { transition: none; } }
+.form-note a { color: var(--azure-d); text-decoration: underline; text-underline-offset: 2px; }
