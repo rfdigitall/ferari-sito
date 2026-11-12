@@ -278,6 +278,23 @@
     });
   }
 
+  /* ---------- carosello recensioni ---------- */
+  var rt = $('#revTrack');
+  if (rt) {
+    var rp = $('#revPrev'), rn = $('#revNext');
+    var passo = function () { var c = rt.querySelector('.rcard'); return c ? c.getBoundingClientRect().width + 16 : 300; };
+    var stato = function () { rp.disabled = rt.scrollLeft < 6; rn.disabled = rt.scrollLeft + rt.clientWidth >= rt.scrollWidth - 6; };
+    rp.addEventListener('click', function () { rt.scrollBy({ left: -passo(), behavior: reduce ? 'auto' : 'smooth' }); });
+    rn.addEventListener('click', function () { rt.scrollBy({ left: passo(), behavior: reduce ? 'auto' : 'smooth' }); });
+    rt.addEventListener('scroll', stato, { passive: true });
+    rt.addEventListener('keydown', function (e) {
+      if (e.key === 'ArrowRight') { e.preventDefault(); rn.click(); }
+      if (e.key === 'ArrowLeft') { e.preventDefault(); rp.click(); }
+    });
+    window.addEventListener('resize', stato);
+    stato();
+  }
+
   /* ---------- varie ---------- */
   var y = $('#year'); if (y) y.textContent = new Date().getFullYear();
   $$('.faq details').forEach(function (d) {
