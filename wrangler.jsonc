@@ -1,5 +1,6 @@
 {
   "name": "ferari-sito",
+  "main": "worker.js",
   "compatibility_date": "2026-10-29",
-  "assets": { "directory": "./" }
+  "assets": { "directory": "./", "binding": "ASSETS", "run_worker_first": true }
 }
