@@ -278,21 +278,48 @@
     });
   }
 
-  /* ---------- carosello recensioni ---------- */
-  var rt = $('#revTrack');
-  if (rt) {
-    var rp = $('#revPrev'), rn = $('#revNext');
-    var passo = function () { var c = rt.querySelector('.rcard'); return c ? c.getBoundingClientRect().width + 16 : 300; };
-    var stato = function () { rp.disabled = rt.scrollLeft < 6; rn.disabled = rt.scrollLeft + rt.clientWidth >= rt.scrollWidth - 6; };
-    rp.addEventListener('click', function () { rt.scrollBy({ left: -passo(), behavior: reduce ? 'auto' : 'smooth' }); });
-    rn.addEventListener('click', function () { rt.scrollBy({ left: passo(), behavior: reduce ? 'auto' : 'smooth' }); });
-    rt.addEventListener('scroll', stato, { passive: true });
-    rt.addEventListener('keydown', function (e) {
-      if (e.key === 'ArrowRight') { e.preventDefault(); rn.click(); }
-      if (e.key === 'ArrowLeft') { e.preventDefault(); rp.click(); }
+  /* ---------- recensioni: carosello a schede ---------- */
+  var rs = $('#rStage');
+  if (rs) {
+    var rcs = $$('.rc', rs), rn = rcs.length, rcur = 0, rdots = $('#rDots'), rtimer = null, rstop = false;
+    rcs.forEach(function (c, i) {
+      var b = doc.createElement('button'); b.type = 'button'; b.setAttribute('aria-label', 'Vai alla scheda ' + (i + 1) + ' di ' + rn);
+      b.addEventListener('click', function () { rstop = true; rgo(i); }); rdots.appendChild(b);
+      c.addEventListener('click', function (e) { var d = rdiff(i); if (d !== 0 && Math.abs(d) <= 1 && !e.target.closest('a')) { rstop = true; rgo(i); } });
     });
-    window.addEventListener('resize', stato);
-    stato();
+    var rdiff = function (i) { var d = i - rcur; if (d > rn / 2) d -= rn; if (d < -rn / 2) d += rn; return d; };
+    var rrender = function () {
+      rcs.forEach(function (c, i) {
+        var d = rdiff(i), ad = Math.abs(d);
+        c.style.setProperty('--d', d); c.style.setProperty('--ad', Math.min(ad, 2));
+        c.classList.toggle('is-on', d === 0);
+        if (ad > 1) c.setAttribute('data-hide', ''); else c.removeAttribute('data-hide');
+        c.setAttribute('aria-hidden', d === 0 ? 'false' : 'true');
+        $$('a', c).forEach(function (a) { a.tabIndex = d === 0 ? 0 : -1; });
+      });
+      $$('button', rdots).forEach(function (b, i) { b.classList.toggle('on', i === rcur); b.setAttribute('aria-current', i === rcur ? 'true' : 'false'); });
+    };
+    var rgo = function (i) { rcur = (i + rn) % rn; rrender(); };
+    var rauto = function () {
+      if (reduce) return;
+      clearInterval(rtimer);
+      rtimer = setInterval(function () { if (!rstop && !doc.hidden) rgo(rcur + 1); }, 5200);
+    };
+    var sx = null;
+    rs.addEventListener('pointerdown', function (e) { sx = e.clientX; });
+    rs.addEventListener('pointerup', function (e) {
+      if (sx === null) return; var dx = e.clientX - sx; sx = null;
+      if (Math.abs(dx) > 40) { rstop = true; rgo(rcur + (dx < 0 ? 1 : -1)); }
+    });
+    rs.addEventListener('pointercancel', function () { sx = null; });
+    rs.addEventListener('mouseenter', function () { rstop = true; });
+    rs.addEventListener('mouseleave', function () { rstop = false; });
+    rs.addEventListener('focusin', function () { rstop = true; });
+    rs.addEventListener('keydown', function (e) {
+      if (e.key === 'ArrowRight') { e.preventDefault(); rstop = true; rgo(rcur + 1); }
+      if (e.key === 'ArrowLeft') { e.preventDefault(); rstop = true; rgo(rcur - 1); }
+    });
+    rrender(); rauto();
   }
 
   /* ---------- varie ---------- */
