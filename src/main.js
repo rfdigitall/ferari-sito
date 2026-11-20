@@ -80,15 +80,31 @@
   /* ---------- testata, barra di chiamata ---------- */
   var header = $('#header'), dock = $('#dock');
   var mark = $('#heroMark');
+  var formEl = null;
   function onScroll() {
-    var y = window.pageYOffset || root.scrollTop;
+    /* prima tutte le letture del layout, poi tutte le scritture: evita i reflow forzati */
+    var y = window.pageYOffset || root.scrollTop, vh = window.innerHeight;
+    if (!formEl) formEl = $('#preventivo');
+    var rr = formEl ? formEl.getBoundingClientRect() : null;
+    var tot = Math.max(1, root.scrollHeight - vh);
+    var rl = railEl ? railEl.getBoundingClientRect() : null;
+    var hh = header ? header.offsetHeight : 76;
+    var rt = (track && lab) ? track.getBoundingClientRect() : null;
+    var sh = (rt && stick) ? stick.offsetHeight : 0;
     if (header) header.classList.toggle('is-scrolled', y > 24);
     if (dock) dock.classList.toggle('is-on', y > 560);
-    var fs_ = $('#preventivo'); if (fs_) { var rr = fs_.getBoundingClientRect(); body.classList.toggle('form-on', rr.top < window.innerHeight * 0.9 && rr.bottom > window.innerHeight * 0.1); }
-    var tot = Math.max(1, root.scrollHeight - window.innerHeight); root.style.setProperty('--sp', Math.min(1, y / tot).toFixed(4));
-    if (mark && !reduce && y < window.innerHeight * 1.4) mark.style.transform = 'translate3d(0,' + (y * 0.22).toFixed(1) + 'px,0)';
-    rail();
-    if (typeof aggiornaLab === 'function') aggiornaLab();
+    if (rr) body.classList.toggle('form-on', rr.top < vh * 0.9 && rr.bottom > vh * 0.1);
+    root.style.setProperty('--sp', Math.min(1, y / tot).toFixed(4));
+    if (mark && !reduce && y < vh * 1.4) mark.style.transform = 'translate3d(0,' + (y * 0.22).toFixed(1) + 'px,0)';
+    if (rl) railEl.style.setProperty('--p', (Math.max(0, Math.min(1, (vh * 0.7 - rl.top) / rl.height)) * 100).toFixed(1) + '%');
+    if (rt) {
+      body.classList.toggle('lab-on', rt.top < vh * 0.9 && rt.bottom > vh * 0.2);
+      var p = (hh - rt.top) / Math.max(1, rt.height - sh);
+      if (!(p < -0.02 || p > 1.02)) {
+        var i = Math.max(0, Math.min(ORDINE.length - 1, Math.floor(Math.max(0, Math.min(0.9999, p)) * ORDINE.length)));
+        if (lab.getAttribute('data-active') !== ORDINE[i]) setSys(ORDINE[i], false);
+      }
+    }
   }
 
   /* menu a schermo intero */
