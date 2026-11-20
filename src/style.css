@@ -2,6 +2,9 @@
 @font-face { font-family: "Montserrat"; font-weight: 100 900; font-display: swap; src: url(../fonts/montserrat-var.woff2) format("woff2"); }
 @font-face { font-family: "Archivo"; font-weight: 100 900; font-stretch: 62% 125%; font-display: swap; src: url(../fonts/archivo-var.woff2) format("woff2"); }
 @font-face { font-family: "Source Sans 3"; font-weight: 200 900; font-display: swap; src: url(../fonts/source-sans-3-var.woff2) format("woff2"); }
+@font-face { font-family: "Montserrat Fallback"; src: local("Arial Bold"), local("Arial-BoldMT"), local("Liberation Sans Bold"), local("Arimo Bold"); font-weight: 600 800; size-adjust: 110.7%; ascent-override: 87.6%; descent-override: 22.6%; line-gap-override: 0%; }
+@font-face { font-family: "Source Sans 3 Fallback"; src: local("Arial"), local("ArialMT"), local("Liberation Sans"), local("Arimo"); font-weight: 200 500; size-adjust: 94.5%; ascent-override: 107.9%; descent-override: 42.3%; line-gap-override: 0%; }
+@font-face { font-family: "Source Sans 3 Fallback"; src: local("Arial Bold"), local("Arial-BoldMT"), local("Liberation Sans Bold"), local("Arimo Bold"); font-weight: 600 900; size-adjust: 90.6%; ascent-override: 112.6%; descent-override: 44.1%; line-gap-override: 0%; }
 :root {
   --navy: #11114d; --navy-deep: #08082b; --navy-2: #1a1a78;
   --paper: #eceef6; --paper-2: #e1e4f0; --white: #fff; --ink: #0a0a2c;
@@ -10,8 +13,8 @@
   --line-d: rgba(255, 255, 255, 0.16); --line-l: rgba(10, 10, 44, 0.16);
   --max: 1280px; --header-h: 76px;
   --font-d: "Archivo", "Helvetica Neue", Arial, sans-serif;
-  --font-t: "Source Sans 3", "Segoe UI", system-ui, -apple-system, Arial, sans-serif;
-  --mono: "Source Sans 3", "Segoe UI", system-ui, Arial, sans-serif;
+  --font-t: "Source Sans 3", "Source Sans 3 Fallback", "Segoe UI", system-ui, -apple-system, Arial, sans-serif;
+  --mono: "Source Sans 3", "Source Sans 3 Fallback", "Segoe UI", system-ui, Arial, sans-serif;
   --ease: cubic-bezier(0.2, 0.8, 0.2, 1); --ease-io: cubic-bezier(0.76, 0, 0.24, 1);
 }
 *, *::before, *::after { box-sizing: border-box; }
@@ -708,7 +711,7 @@ body.is-ready .bp-pop { animation: pop .9s var(--ease) forwards; animation-delay
 .form-note a { color: var(--azure-d); text-decoration: underline; text-underline-offset: 2px; }
 
 /* ---- tipografia: Montserrat (titoli) + Source Sans 3 (testi) ---- */
-:root { --font-d: "Montserrat", "Helvetica Neue", Arial, sans-serif; --font-n: "Archivo", "Arial Narrow", Arial, sans-serif; }
+:root { --font-d: "Montserrat", "Montserrat Fallback", "Helvetica Neue", Arial, sans-serif; --font-n: "Archivo", "Arial Narrow", Arial, sans-serif; }
 body { font-size: 18px; }
 .hero h1, .h2, .sys-btn .t, .sys-info h3, .pstep h3, .row h3, .rc-h, .cta h2, .doc h1, .doc h2, .l-title, .l-word b, .drawer nav a, .hero-foot b, .pin b, .brand-name { text-transform: none; font-stretch: 100%; font-weight: 700; letter-spacing: -.025em; }
 .hero h1 { font-size: clamp(2rem, min(8.2vw, 9.4vh), 4.1rem); line-height: 1.1; margin-bottom: 1.6rem; }
