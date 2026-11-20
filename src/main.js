@@ -271,7 +271,7 @@
         var t = testo();
         var url = b.getAttribute('data-via') === 'wa'
           ? 'https://wa.me/393926322720?text=' + encodeURIComponent(t)
-          : 'mailto:ferarimpianti@gmail.com?subject=' + encodeURIComponent('Richiesta preventivo') + '&body=' + encodeURIComponent(t);
+          : 'mailto:info@ferarimpianti.it?subject=' + encodeURIComponent('Richiesta preventivo') + '&body=' + encodeURIComponent(t);
         var a = doc.createElement('a'); a.href = url; if (b.getAttribute('data-via') === 'wa') { a.target = '_blank'; a.rel = 'noopener noreferrer'; }
         doc.body.appendChild(a); a.click(); a.remove();
       });
@@ -320,6 +320,42 @@
       if (e.key === 'ArrowLeft') { e.preventDefault(); rstop = true; rgo(rcur - 1); }
     });
     rrender(); rauto();
+  }
+
+  /* ---------- galleria lavori: lightbox ---------- */
+  var gal = $('#gal'), lb = $('#lbx');
+  if (gal && lb && typeof lb.showModal === 'function') {
+    var gi = $$('.gal-i', gal), gc = 0;
+    var gshow = function (n) {
+      gc = (n + gi.length) % gi.length; var a = gi[gc], im = a.querySelector('img');
+      $('#lbxI').src = a.getAttribute('href'); $('#lbxI').alt = im ? im.alt : '';
+      $('#lbxC').textContent = a.getAttribute('data-cap') || '';
+    };
+    gi.forEach(function (a, i) { a.addEventListener('click', function (e) { e.preventDefault(); gshow(i); lb.showModal(); }); });
+    $('#lbxX').addEventListener('click', function () { lb.close(); });
+    $('#lbxP').addEventListener('click', function () { gshow(gc - 1); });
+    $('#lbxS').addEventListener('click', function () { gshow(gc + 1); });
+    lb.addEventListener('click', function (e) { if (e.target === lb) lb.close(); });
+    lb.addEventListener('keydown', function (e) { if (e.key === 'ArrowRight') gshow(gc + 1); if (e.key === 'ArrowLeft') gshow(gc - 1); });
+  }
+
+  /* ---------- zone: mappa interattiva ---------- */
+  var zm = $('#zMap');
+  if (zm) {
+    var zb = $$('.zlist button', zm), zn = $$('.zn', zm), zi = 0, zt = null, zstop = false;
+    var zset = function (id) {
+      zb.forEach(function (b) { b.classList.toggle('on', b.getAttribute('data-z') === id); });
+      zn.forEach(function (g) { g.classList.toggle('on', g.getAttribute('data-z') === id); });
+    };
+    zb.forEach(function (b, i) {
+      var on = function () { zstop = true; zi = i; zset(b.getAttribute('data-z')); };
+      b.addEventListener('mouseenter', on); b.addEventListener('focus', on); b.addEventListener('click', on);
+    });
+    zn.forEach(function (g) { g.addEventListener('click', function () { zstop = true; zset(g.getAttribute('data-z')); }); });
+    zset(zb[0].getAttribute('data-z'));
+    if (!reduce) {
+      zt = setInterval(function () { if (zstop || doc.hidden) return; zi = (zi + 1) % zb.length; zset(zb[zi].getAttribute('data-z')); }, 2600);
+    }
   }
 
   /* ---------- varie ---------- */

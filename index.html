@@ -28,8 +28,8 @@
 <link rel="icon" type="image/png" sizes="192x192" href="/img/icon-192.png">
 <link rel="apple-touch-icon" href="img/apple-touch-icon.png">
 <link rel="manifest" href="site.webmanifest">
-<link rel="preload" href="fonts/barlow-condensed-700.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="preload" href="fonts/inter-var.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="fonts/montserrat-var.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="fonts/source-sans-3-var.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="css/style.css">
 <script type="application/ld+json">
 {
@@ -43,7 +43,7 @@
   "telephone": "+393926322720",
   "address": { "@type": "PostalAddress", "streetAddress": "Via Sgarabattola 673", "postalCode": "41059", "addressLocality": "Zocca", "addressRegion": "MO", "addressCountry": "IT" },
   "vatID": "IT04253730362",
-  "email": "ferarimpianti@gmail.com",
+  "email": "info@ferarimpianti.it",
   "areaServed": [
     { "@type": "AdministrativeArea", "name": "Provincia di Modena" },
     { "@type": "AdministrativeArea", "name": "Provincia di Bologna" }
@@ -73,7 +73,7 @@
 <header class="header" id="header">
   <div class="header-in">
     <a class="brand" href="#top" aria-label="Ferari Impianti, torna in alto">
-      <img src="img/mark.webp" width="44" height="44" alt="" decoding="async">
+      <img src="img/mark-96.webp" width="44" height="44" alt="" decoding="async">
       <span class="brand-name">Ferari<small>Impianti</small></span>
     </a>
     <nav class="nav mono" aria-label="Principale">
@@ -360,25 +360,60 @@
 
   <!-- zone -->
   <section class="section paper" id="zone" aria-labelledby="t-zone">
-    <div class="wrap zone">
-      <div class="rv">
-        <p class="eyebrow mono">Zone</p>
-        <h2 class="h2" id="t-zone" data-split>Dove <em>interveniamo</em></h2>
-        <ul class="chips">
-          <li>Modena</li><li>Bologna</li><li>Terre di Castelli</li><li>Appennino modenese</li><li>Appennino bolognese</li><li>Zone limitrofe</li>
-        </ul>
-        <a class="btn btn-ink" href="https://www.google.com/maps/search/?api=1&amp;query=Modena" target="_blank" rel="noopener noreferrer">Apri su Google Maps <svg class="arr" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+    <div class="wrap">
+      <div class="zmap rv" id="zMap">
+        <div class="zmap-txt">
+          <p class="eyebrow mono">Zone</p>
+          <h2 class="h2" id="t-zone" data-split>Dove <em>interveniamo</em></h2>
+          <p class="zmap-lead">Partiamo da Zocca e raggiungiamo con i nostri mezzi le province di Modena e Bologna e i comuni dell'Appennino emiliano.</p>
+          <ul class="zlist" role="list"><li><button type="button" data-z="mo"><i>01</i><b>Modena</b></button></li><li><button type="button" data-z="tc"><i>02</i><b>Terre di Castelli</b></button></li><li><button type="button" data-z="bo"><i>03</i><b>Bologna</b></button></li><li><button type="button" data-z="ab"><i>04</i><b>Appennino bolognese</b></button></li><li><button type="button" data-z="am"><i>05</i><b>Appennino modenese</b></button></li><li><button type="button" data-z="zl"><i>06</i><b>Zone limitrofe</b></button></li></ul>
+          <a class="btn btn-amber" href="tel:+393926322720">Verifica la tua zona al telefono</a>
+        </div>
+        <div class="zmap-fig">
+          <svg viewBox="0 0 520 440" role="img" aria-label="Schema indicativo delle zone servite, con base a Zocca">
+            <defs><radialGradient id="zg" cx="50%" cy="50%" r="50%"><stop offset="0" stop-color="#ffbf06" stop-opacity=".28"/><stop offset="1" stop-color="#ffbf06" stop-opacity="0"/></radialGradient></defs>
+            <circle cx="260" cy="225" r="150" fill="url(#zg)"/>
+            <g class="zring"><circle cx="260" cy="225" r="70"/><circle cx="260" cy="225" r="135"/><circle cx="260" cy="225" r="200" stroke-dasharray="3 7"/></g>
+          <g class="zn" data-z="mo"><line class="zl-line" x1="260" y1="225" x2="245" y2="72"/><circle class="zl-dot" cx="245" cy="72" r="7"/><text x="245" y="52" text-anchor="middle">Modena</text></g>
+          <g class="zn" data-z="tc"><line class="zl-line" x1="260" y1="225" x2="318" y2="140"/><circle class="zl-dot" cx="318" cy="140" r="7"/><text x="332" y="145" text-anchor="start">Terre di Castelli</text></g>
+          <g class="zn" data-z="bo"><line class="zl-line" x1="260" y1="225" x2="432" y2="112"/><circle class="zl-dot" cx="432" cy="112" r="7"/><text x="432" y="92" text-anchor="middle">Bologna</text></g>
+          <g class="zn" data-z="ab"><line class="zl-line" x1="260" y1="225" x2="400" y2="330"/><circle class="zl-dot" cx="400" cy="330" r="7"/><text x="400" y="358" text-anchor="middle">Appennino bolognese</text></g>
+          <g class="zn" data-z="am"><line class="zl-line" x1="260" y1="225" x2="115" y2="330"/><circle class="zl-dot" cx="115" cy="330" r="7"/><text x="115" y="358" text-anchor="middle">Appennino modenese</text></g>
+          <g class="zn" data-z="zl"><line class="zl-line" x1="260" y1="225" x2="92" y2="150"/><circle class="zl-dot" cx="92" cy="150" r="7"/><text x="92" y="130" text-anchor="middle">Zone limitrofe</text></g>
+            <g class="zbase"><circle class="zpulse" cx="260" cy="225" r="14"/><circle class="zcore" cx="260" cy="225" r="9"/><text x="260" y="262" text-anchor="middle">Zocca</text><text class="zsub" x="260" y="279" text-anchor="middle">sede operativa</text></g>
+          </svg>
+          <p class="zmap-note">Schema indicativo, non in scala.</p>
+        </div>
       </div>
-      <div class="radar rv" style="--d:120" role="img" aria-label="Schema della zona di intervento tra Modena e Bologna">
-        <svg viewBox="0 0 400 400" aria-hidden="true">
-          <g fill="none" stroke="rgba(255,255,255,.14)" stroke-width="1"><circle cx="200" cy="200" r="60"/><circle cx="200" cy="200" r="120"/><circle cx="200" cy="200" r="180"/><path d="M200 10V390M10 200H390"/></g>
-        </svg>
-        <span class="sweep" aria-hidden="true"></span>
-        <span class="pin" style="left:36%;top:52%"><b>Modena</b><small>Sede operativa</small></span>
-        <span class="pin r" style="left:68%;top:38%"><b>Bologna</b></span>
-        <span class="pin dim" style="left:42%;top:70%"><b>Terre di Castelli</b></span>
-        <span class="pin dim" style="left:24%;top:82%"><b>Appennino modenese</b></span>
-        <span class="pin dim r" style="left:70%;top:76%"><b>Appennino bolognese</b></span>
+    </div>
+  </section>
+
+  <!-- lavori (galleria): attiva quando ci sono le foto in img/lavori/. Togliere l'attributo hidden e inserire le <figure> -->
+  <section class="section paper" id="lavori" aria-labelledby="t-lavori" style="padding-top:0" hidden>
+    <div class="wrap">
+      <div class="head rv">
+        <p class="eyebrow mono">Lavori realizzati</p>
+        <h2 class="h2" id="t-lavori" data-split>Alcuni dei nostri <em>lavori</em></h2>
+      </div>
+      <div class="gal rv" id="gal">
+        <!-- esempio: <a class="gal-i" href="img/lavori/lavoro-01.jpg" data-cap="Impianto elettrico, Zocca"><img src="img/lavori/lavoro-01.jpg" width="800" height="600" alt="Impianto elettrico a Zocca" loading="lazy" decoding="async"></a> -->
+      </div>
+    </div>
+    <dialog class="lbx" id="lbx" aria-label="Galleria dei lavori">
+      <button type="button" class="lbx-x" id="lbxX" aria-label="Chiudi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+      <button type="button" class="lbx-n lbx-p" id="lbxP" aria-label="Foto precedente"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5M11 6l-6 6 6 6"/></svg></button>
+      <figure class="lbx-f"><img id="lbxI" alt=""><figcaption id="lbxC"></figcaption></figure>
+      <button type="button" class="lbx-n lbx-s" id="lbxS" aria-label="Foto successiva"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
+    </dialog>
+  </section>
+
+  <!-- partner: attivo quando c'è il logo in img/partner/. Togliere hidden e inserire il logo -->
+  <section class="section paper" id="partner" aria-label="Installatori ufficiali" style="padding-top:0;padding-bottom:3rem" hidden>
+    <div class="wrap">
+      <div class="partner rv">
+        <p class="eyebrow mono">Collaborazioni</p>
+        <h2 class="partner-h">Installatori ufficiali</h2>
+        <div class="partner-logos"><!-- <img src="img/partner/logo.png" width="220" height="80" alt="Nome partner" loading="lazy"> --></div>
       </div>
     </div>
   </section>
@@ -390,6 +425,7 @@
       <div class="head rv">
         <p class="eyebrow mono">Recensioni su Google</p>
         <h2 class="h2" id="t-rec" data-split>Cosa dicono <em>di noi</em></h2>
+        <p class="sub rev-sel">Una selezione delle recensioni pubblicate su Google.</p>
       </div>
     </div>
     <div class="rstage rv" id="rStage" role="region" aria-roledescription="carosello" aria-label="Recensioni dei clienti su Google" tabindex="0">
@@ -457,10 +493,12 @@
         <h2 class="h2" id="t-faq" data-split>Prima di <em>chiamare</em></h2>
       </div>
       <div class="faq rv">
-        <details><summary>Quanto tempo ci vuole?<i aria-hidden="true"></i></summary><div class="ans">Durante la chiamata indichiamo un orario stimato di arrivo.</div></details>
-        <details><summary>Intervenite di notte e nei festivi?<i aria-hidden="true"></i></summary><div class="ans">Sì, 24 ore su 24, weekend e festivi inclusi.</div></details>
-        <details><summary>Perdita o odore di bruciato: cosa faccio?<i aria-hidden="true"></i></summary><div class="ans">Chiudete l'acqua o staccate la corrente dal quadro, poi chiamateci.</div></details>
-        <details><summary>Fate preventivi?<i aria-hidden="true"></i></summary><div class="ans">Sì, scritti e chiari, prima di iniziare i lavori programmati.</div></details>
+        <details><summary>In quali zone operate?<i aria-hidden="true"></i></summary><div class="ans">Lavoriamo principalmente a Zocca e copriamo direttamente con i nostri mezzi le province di Modena, Bologna e tutti i comuni dell'Appennino emiliano comprese zone rurali dove i competitor non arrivano e non vengono mai.</div></details>
+        <details><summary>Offrite un servizio di pronto intervento per guasti urgenti?<i aria-hidden="true"></i></summary><div class="ans">Sì, siamo a disposizione per gestire urgenze legate a guasti elettrici o perdite idrauliche. Consigliamo di contattarci telefonicamente per verificare la disponibilità immediata in base alla zona da raggiungere.</div></details>
+        <details><summary>Vi occupate sia di impianti elettrici che idraulici?<i aria-hidden="true"></i></summary><div class="ans">Assolutamente sì. Offriamo un servizio completo e &laquo;chiavi in mano&raquo; per impianti elettrici, idraulici e termoidraulici. Avere un unico referente per entrambi i settori semplifica la gestione dei lavori, ottimizza le tempistiche del cantiere e riduce i costi.</div></details>
+        <details><summary>Installate anche sistemi di videosorveglianza, citofonia o automazione cancelli?<i aria-hidden="true"></i></summary><div class="ans">Sì, progettiamo e installiamo sistemi di sicurezza e videosorveglianza, impianti di videocitofonia e motorizzazioni per cancelli automatici.</div></details>
+        <details><summary>I sopralluoghi e i preventivi sono gratuiti?<i aria-hidden="true"></i></summary><div class="ans">Sì, eseguiamo sopralluoghi gratuiti: sono per noi un passaggio fondamentale per visionare l'entità del lavoro e consigliarti la soluzione tecnica migliore. A seguito del sopralluogo ti forniremo un preventivo dettagliato, trasparente e senza alcun impegno.</div></details>
+        <details><summary>Intervenite per riparazioni anche su impianti vecchi o non installati da voi?<i aria-hidden="true"></i></summary><div class="ans">Sì, eseguiamo ricerca guasti, riparazioni mirate, sostituzione di singoli componenti (come la sostituzione di cavi, prese o interruttori magnetotermici difettosi) e l'adeguamento normativo anche su impianti preesistenti o realizzati da terzi.</div></details>
       </div>
     </div>
   </section>
@@ -468,19 +506,27 @@
   <!-- preventivo -->
   <section class="section paper" id="preventivo" aria-labelledby="t-prev" style="padding-top:0">
     <div class="wrap form-grid">
-      <div class="rv">
+      <div class="rv fg-txt">
         <p class="eyebrow mono">Preventivo</p>
         <h2 class="h2" id="t-prev" data-split>Raccontaci <em>cosa serve</em></h2>
-        <p class="sub">Per un'urgenza, meglio una telefonata.</p>
-        <a class="btn btn-ink" href="tel:+393926322720" style="margin-top:1.6rem">Chiama 392 632 2720</a>
+        <p class="sub">Per un'urgenza, meglio una telefonata. Per tutto il resto ti rispondiamo con un preventivo scritto.</p>
+        <ul class="fg-pts" role="list">
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 13l4 4L19 7"/></svg><span>Sopralluogo gratuito</span></li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 13l4 4L19 7"/></svg><span>Preventivo dettagliato e senza impegno</span></li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 13l4 4L19 7"/></svg><span>Un solo referente per elettrico e idraulico</span></li>
+        </ul>
+        <a class="btn btn-ink" href="tel:+393926322720">Chiama 392 632 2720</a>
       </div>
       <form class="form rv" id="formPrev" novalidate style="--d:120">
-        <label class="f"><span>Nome</span><input type="text" name="nome" autocomplete="name" required maxlength="80"></label>
-        <label class="f"><span>Telefono</span><input type="tel" name="tel" inputmode="tel" autocomplete="tel" required maxlength="30"></label>
+        <div class="form-top"><b>Richiedi un preventivo</b><span>Si compila in meno di un minuto</span></div>
         <fieldset class="f"><legend>Di cosa hai bisogno</legend>
-          <div class="opts"><label class="opt"><input type="radio" name="servizio" value="Elettricista"><span>Elettrico</span></label><label class="opt"><input type="radio" name="servizio" value="Idraulico"><span>Idraulico</span></label><label class="opt"><input type="radio" name="servizio" value="Climatizzazione"><span>Climatizzazione</span></label><label class="opt"><input type="radio" name="servizio" value="Caldaie e riscaldamento"><span>Caldaie</span></label><label class="opt"><input type="radio" name="servizio" value="Altro"><span>Altro</span></label></div>
+          <div class="opts"><label class="opt"><input type="radio" name="servizio" value="Elettricista"><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M13 2 4 14h7l-1 8 9-12h-7z"/></svg>Elettrico</span></label><label class="opt"><input type="radio" name="servizio" value="Idraulico"><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3c3 4 6 7 6 11a6 6 0 1 1-12 0c0-4 3-7 6-11z"/></svg>Idraulico</span></label><label class="opt"><input type="radio" name="servizio" value="Climatizzazione"><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v18M4.2 7.5l15.6 9M19.8 7.5l-15.6 9"/></svg>Clima</span></label><label class="opt"><input type="radio" name="servizio" value="Caldaie e riscaldamento"><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3c1 3 5 5 5 10a5 5 0 0 1-10 0c0-2 1-3 2-4 0 2 1 3 2 3 0-3-1-5 1-9z"/></svg>Caldaie</span></label><label class="opt"><input type="radio" name="servizio" value="Altro"><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h.01M12 12h.01M19 12h.01"/></svg>Altro</span></label></div>
         </fieldset>
-        <label class="f"><span>Messaggio <em>(facoltativo)</em></span><textarea name="msg" rows="3" maxlength="600"></textarea></label>
+        <div class="f-row">
+          <label class="f"><span>Nome</span><input type="text" name="nome" autocomplete="name" required maxlength="80" placeholder="Il tuo nome"></label>
+          <label class="f"><span>Telefono</span><input type="tel" name="tel" inputmode="tel" autocomplete="tel" required maxlength="30" placeholder="Il tuo numero"></label>
+        </div>
+        <label class="f"><span>Messaggio <em>(facoltativo)</em></span><textarea name="msg" rows="3" maxlength="600" placeholder="Raccontaci in due righe il problema o il lavoro"></textarea></label>
         <p class="form-err" id="formErr" role="alert"></p>
         <div class="form-actions">
           <button type="button" class="btn btn-amber btn-lg" data-via="wa"><svg class="wa" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>Invia su WhatsApp</button>
@@ -500,10 +546,10 @@
         <div class="hero-actions rv" style="margin-top:.4rem">
           <a class="btn btn-amber btn-lg" href="tel:+393926322720">Chiama subito <svg class="arr" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
           <a class="btn btn-line btn-lg" href="https://wa.me/393926322720?text=Buongiorno%2C%20ho%20bisogno%20di%20un%20intervento." target="_blank" rel="noopener noreferrer"><svg class="wa" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>WhatsApp</a>
-          <a class="btn btn-line btn-lg" href="mailto:ferarimpianti@gmail.com">Email</a>
+          <a class="btn btn-line btn-lg" href="mailto:info@ferarimpianti.it">Email</a>
         </div>
       </div>
-      <div class="cta-meta mono"><span>Attivi 24 ore su 24</span><span>Modena · Bologna</span><span>ferarimpianti@gmail.com</span></div>
+      <div class="cta-meta mono"><span>Attivi 24 ore su 24</span><span>Modena · Bologna</span><span>info@ferarimpianti.it</span></div>
     </div>
   </section>
 </main>
@@ -512,16 +558,20 @@
   <div class="wrap">
     <div class="f-grid">
       <div class="f-brand">
-        <img src="img/logo.webp" width="130" height="130" alt="Ferari Impianti, sistemi per la casa, installazione e manutenzione" loading="lazy" decoding="async">
+        <img src="img/logo-260.webp" width="130" height="130" alt="Ferari Impianti, sistemi per la casa, installazione e manutenzione" loading="lazy" decoding="async">
         
       </div>
-      <div class="f-col"><h3>Contatti</h3><a href="tel:+393926322720">Tel. 392 632 2720</a><a href="https://wa.me/393926322720" target="_blank" rel="noopener noreferrer">WhatsApp</a><a href="mailto:ferarimpianti@gmail.com">ferarimpianti@gmail.com</a><span>Attivi 24 ore su 24</span></div>
+      <div class="f-col"><h3>Contatti</h3><a href="tel:+393926322720">Tel. 392 632 2720</a><a href="https://wa.me/393926322720" target="_blank" rel="noopener noreferrer">WhatsApp</a><a href="mailto:info@ferarimpianti.it">info@ferarimpianti.it</a><span>Attivi 24 ore su 24</span></div>
       <div class="f-col"><h3>Impianti</h3><a href="#servizi">Elettricista</a><a href="#servizi">Idraulico</a><a href="#servizi">Climatizzazione e caldaie</a><a href="#servizi">Impianti civili</a><a href="#preventivo">Richiedi un preventivo</a></div>
       <div class="f-col"><h3>Seguici</h3><a href="https://www.facebook.com/ferarimpianti/" target="_blank" rel="noopener noreferrer">Facebook</a><a href="https://www.instagram.com/ferarimpianti/" target="_blank" rel="noopener noreferrer">Instagram</a><a href="https://www.google.com/maps/place/?q=place_id:ChIJR0rOGATJfg4R-orqtt_TB64" target="_blank" rel="noopener noreferrer">Recensioni Google</a></div>
     </div>
-    <div class="f-bottom mono">
-      <span>© <span id="year">2026</span> <span id="datiLegali">Ferari Impianti di Ferari Denis · Via Sgarabattola 673, 41059 Zocca (MO) · P.IVA 04253730362 · REA MO-455563 · PEC denis.ferari@pec.fiscozen.it</span></span>
-      <span><a href="/privacy">Privacy e cookie</a></span>
+    <div class="f-bottom">
+      <div class="f-legal">
+        <p class="f-co">© <span id="year">2026</span> Ferari Impianti di Ferari Denis</p>
+        <p>Sede legale: Via Sgarabattola 673, 41059 Zocca (MO)</p>
+        <p>P.IVA 04253730362 · REA MO-455563 · PEC denis.ferari@pec.fiscozen.it</p>
+      </div>
+      <a class="f-priv" href="/privacy">Privacy e cookie</a>
     </div>
   </div>
   <div class="f-mark" aria-hidden="true">Ferari Impianti</div>

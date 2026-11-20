@@ -1,10 +1,7 @@
 /* Ferari Impianti — stile. Idea: un disegno tecnico che prende vita. Colori del logo: bleumarin, giallo del fulmine, azzurro dell'acqua. */
-@font-face { font-family: "Barlow Condensed"; font-weight: 500; font-display: swap; src: url("../fonts/barlow-condensed-500.woff2") format("woff2"); }
-@font-face { font-family: "Barlow Condensed"; font-weight: 600; font-display: swap; src: url("../fonts/barlow-condensed-600.woff2") format("woff2"); }
-@font-face { font-family: "Barlow Condensed"; font-weight: 700; font-display: swap; src: url("../fonts/barlow-condensed-700.woff2") format("woff2"); }
-@font-face { font-family: "Inter"; font-weight: 100 900; font-display: swap; src: url("../fonts/inter-var.woff2") format("woff2"); }
-@font-face { font-family: "Plex Mono"; font-weight: 500; font-display: swap; src: url("../fonts/plex-mono-500.woff2") format("woff2"); }
-
+@font-face { font-family: "Montserrat"; font-weight: 100 900; font-display: swap; src: url(../fonts/montserrat-var.woff2) format("woff2"); }
+@font-face { font-family: "Archivo"; font-weight: 100 900; font-stretch: 62% 125%; font-display: swap; src: url(../fonts/archivo-var.woff2) format("woff2"); }
+@font-face { font-family: "Source Sans 3"; font-weight: 200 900; font-display: swap; src: url(../fonts/source-sans-3-var.woff2) format("woff2"); }
 :root {
   --navy: #11114d; --navy-deep: #08082b; --navy-2: #1a1a78;
   --paper: #eceef6; --paper-2: #e1e4f0; --white: #fff; --ink: #0a0a2c;
@@ -12,9 +9,9 @@
   --txt-d: #f6fcfc; --mut-d: rgba(246, 252, 252, 0.7); --mut-l: #555a7c;
   --line-d: rgba(255, 255, 255, 0.16); --line-l: rgba(10, 10, 44, 0.16);
   --max: 1280px; --header-h: 76px;
-  --font-d: "Barlow Condensed", "Arial Narrow", Impact, sans-serif;
-  --font-t: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
-  --mono: "Plex Mono", ui-monospace, "SF Mono", Menlo, monospace;
+  --font-d: "Archivo", "Helvetica Neue", Arial, sans-serif;
+  --font-t: "Source Sans 3", "Segoe UI", system-ui, -apple-system, Arial, sans-serif;
+  --mono: "Source Sans 3", "Segoe UI", system-ui, Arial, sans-serif;
   --ease: cubic-bezier(0.2, 0.8, 0.2, 1); --ease-io: cubic-bezier(0.76, 0, 0.24, 1);
 }
 *, *::before, *::after { box-sizing: border-box; }
@@ -672,7 +669,7 @@ body.is-ready .bp-pop { animation: pop .9s var(--ease) forwards; animation-delay
 
 .form-on .dock { transform: translateY(140%) !important; }
 
-.form-actions .btn { flex: 1 1 100%; }
+
 
 /* ---- recensioni (carosello a schede) ---- */
 .rstage { --cw: min(440px, 78vw); --ch: 380px; position: relative; padding: 1.2rem 0 3.4rem; overflow-x: clip; overflow-y: visible; margin-top: 1.5rem; touch-action: pan-y; outline-offset: -4px; }
@@ -709,3 +706,150 @@ body.is-ready .bp-pop { animation: pop .9s var(--ease) forwards; animation-delay
 @media (min-width: 980px) { .rstage { --cw: 460px; } }
 @media (prefers-reduced-motion: reduce) { .rc { transition: none; } }
 .form-note a { color: var(--azure-d); text-decoration: underline; text-underline-offset: 2px; }
+
+/* ---- tipografia: Montserrat (titoli) + Source Sans 3 (testi) ---- */
+:root { --font-d: "Montserrat", "Helvetica Neue", Arial, sans-serif; --font-n: "Archivo", "Arial Narrow", Arial, sans-serif; }
+body { font-size: 18px; }
+.hero h1, .h2, .sys-btn .t, .sys-info h3, .pstep h3, .row h3, .rc-h, .cta h2, .doc h1, .doc h2, .l-title, .l-word b, .drawer nav a, .hero-foot b, .pin b, .brand-name { text-transform: none; font-stretch: 100%; font-weight: 700; letter-spacing: -.025em; }
+.hero h1 { font-size: clamp(2rem, min(8.2vw, 9.4vh), 4.1rem); line-height: 1.1; margin-bottom: 1.6rem; }
+.h2 { font-size: clamp(1.7rem, 3.8vw, 3rem); line-height: 1.14; }
+.sys-btn .t { font-size: clamp(1.1rem, 1.9vw, 1.5rem); line-height: 1.15; letter-spacing: -.015em; }
+.sys-info h3 { font-size: clamp(1.25rem, 2vw, 1.65rem); line-height: 1.15; }
+.pstep h3, .row h3 { font-size: clamp(1.3rem, 2.6vw, 2rem); line-height: 1.15; }
+.rc-h { font-size: clamp(1.4rem, 2.8vw, 1.8rem); line-height: 1.15; }
+.cta h2 { font-size: clamp(2rem, 6vw, 4.6rem); line-height: 1.08; }
+.doc h1 { font-size: clamp(1.8rem, 4.6vw, 3rem); line-height: 1.12; }
+.doc h2 { font-size: 1.3rem; line-height: 1.25; letter-spacing: -.015em; }
+.l-title { font-size: clamp(1.8rem, 6vw, 3.6rem); line-height: 1.08; }
+.l-word b { font-size: clamp(1.4rem, 4.4vw, 2.2rem); letter-spacing: 0; line-height: 1.15; }
+.drawer nav a { font-size: clamp(1.7rem, 7vw, 2.3rem); line-height: 1.2; }
+.hero-foot b { font-size: clamp(.95rem, 1.7vw, 1.2rem); letter-spacing: 0; line-height: 1.2; }
+.pin b { font-size: 1rem; letter-spacing: 0; }
+.brand-name { font-size: 1.25rem; letter-spacing: .05em; }
+.l-pct, .hero-mark, .stat b, .tel-giant, .f-mark, .rc-big, .tag24-t, .dayt, .bp-txt, .bp-num { font-family: var(--font-n); font-stretch: 72%; }
+.bp-txt { text-transform: none; letter-spacing: .02em; }
+.mono { text-transform: none; letter-spacing: .03em; font-weight: 600; font-size: .86rem; }
+.btn { text-transform: none; letter-spacing: .01em; font-weight: 700; font-size: 1rem; }
+/* ---- galleria lavori + lightbox ---- */
+.gal { display: grid; grid-template-columns: repeat(2, 1fr); gap: .7rem; margin-top: 2rem; }
+@media (min-width: 720px) { .gal { grid-template-columns: repeat(3, 1fr); gap: 1rem; } }
+.gal-i { display: block; position: relative; overflow: hidden; border-radius: 4px; background: var(--paper-2); aspect-ratio: 4 / 3; }
+.gal-i img { width: 100%; height: 100%; object-fit: cover; transition: transform .6s var(--ease); }
+.gal-i:hover img { transform: scale(1.04); }
+.gal-i:focus-visible { outline: 2px solid var(--azure-d); outline-offset: 3px; }
+.lbx { border: 0; padding: 0; background: rgba(6,6,32,.94); color: #fff; width: 100vw; height: 100vh; max-width: none; max-height: none; margin: 0; }
+.lbx::backdrop { background: rgba(6,6,32,.94); }
+.lbx[open] { display: grid; grid-template-columns: auto 1fr auto; align-items: center; gap: .5rem; padding: 1rem; }
+.lbx-f { margin: 0; display: grid; gap: .8rem; justify-items: center; min-width: 0; }
+.lbx-f img { max-width: 100%; max-height: 80vh; width: auto; height: auto; object-fit: contain; border-radius: 3px; }
+.lbx-f figcaption { color: var(--mut-d); font-size: .95rem; text-align: center; min-height: 1.4em; }
+.lbx-x, .lbx-n { width: 46px; height: 46px; display: grid; place-items: center; background: transparent; color: #fff; border: 1px solid rgba(255,255,255,.35); border-radius: 3px; cursor: pointer; transition: background .3s, color .3s; }
+.lbx-x:hover, .lbx-n:hover { background: var(--amber); color: var(--navy-deep); border-color: var(--amber); }
+.lbx-x { position: absolute; top: 1rem; right: 1rem; z-index: 2; }
+.lbx svg { width: 20px; height: 20px; }
+@media (max-width: 560px) { .lbx[open] { grid-template-columns: 1fr; grid-template-rows: 1fr auto; } .lbx-n { position: absolute; bottom: 1.2rem; } .lbx-p { left: 1rem; } .lbx-s { right: 1rem; } .lbx-f img { max-height: 70vh; } }
+.partner { text-align: center; padding: 2rem 1rem; border-top: 1px solid var(--line-l); border-bottom: 1px solid var(--line-l); }
+.partner .eyebrow { justify-content: center; }
+.partner-h { font-family: var(--font-d); font-weight: 700; font-size: clamp(1.5rem, 3vw, 2rem); letter-spacing: -.02em; margin: .6rem 0 1.4rem; }
+.partner-logos { display: flex; flex-wrap: wrap; gap: 2rem; align-items: center; justify-content: center; }
+.partner-logos img { max-height: 70px; width: auto; height: auto; }
+[hidden] { display: none !important; }
+
+.brand img { width: 48px; height: 48px; border-radius: 0; object-fit: contain; }
+
+@media (min-width: 1000px) and (max-height: 780px) {
+  .lab-stick .eyebrow { display: none; }
+  .lab-stick .head { margin-bottom: .5rem; }
+  .lab-stick .h2 { font-size: clamp(1.5rem, 2.8vw, 2.1rem); margin-top: 0; }
+  #servizi .lab { height: calc(100svh - 76px - 4.6rem - 1.4rem); min-height: 300px; }
+  .sys-btn { padding: .3rem .2rem; }
+  .sys-btn .t { font-size: 1.1rem; }
+}
+@media (min-width: 1000px) and (max-height: 620px) {
+  .lab-stick .h2 { font-size: 1.4rem; }
+  #servizi .lab { height: calc(100svh - 76px - 3.8rem - 1rem); min-height: 260px; }
+  .sys-btn .t { font-size: 1rem; }
+}
+
+/* ---- zone: mappa interattiva ---- */
+.zmap { display: grid; gap: 2rem; padding: clamp(1.5rem, 4vw, 3.2rem); background: var(--navy); color: var(--txt-d); border-radius: 6px; position: relative; overflow: hidden; isolation: isolate; }
+.zmap::before { content: ""; position: absolute; inset: 0; z-index: -1; background-image: linear-gradient(rgba(255,255,255,.05) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.05) 1px, transparent 1px); background-size: 40px 40px; }
+@media (min-width: 980px) { .zmap { grid-template-columns: minmax(0, .9fr) minmax(0, 1.1fr); gap: 3.4rem; align-items: center; } }
+.zmap .eyebrow { color: var(--azure); }
+.zmap .h2 { color: #fff; margin-top: .8rem; } .zmap .h2 em { color: var(--amber); }
+.zmap-lead { color: var(--mut-d); margin: 1rem 0 1.4rem; max-width: 34rem; }
+.zlist { list-style: none; margin: 0 0 1.6rem; padding: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(10.2rem, 1fr)); gap: .5rem; }
+.zlist button { width: 100%; display: flex; align-items: center; gap: .8rem; padding: .75rem 1rem; background: rgba(255,255,255,.06); border: 1px solid var(--line-d); border-radius: 10px; color: #fff; text-align: left; cursor: pointer; transition: background .3s, border-color .3s, color .3s, transform .3s var(--ease); }
+.zlist i { font-style: normal; font-weight: 700; font-size: .78rem; color: var(--amber); letter-spacing: .06em; transition: color .3s; }
+.zlist b { font-weight: 600; font-size: 1rem; }
+.zlist button:hover { border-color: rgba(255,191,6,.6); }
+.zlist button.on { background: var(--amber); border-color: var(--amber); color: var(--navy-deep); transform: translateY(-2px); }
+.zlist button.on i { color: var(--navy-deep); }
+.zlist button:focus-visible { outline: 2px solid var(--amber); outline-offset: 3px; }
+.zmap-fig { position: relative; min-width: 0; }
+.zmap-fig svg { display: block; width: 100%; height: auto; overflow: visible; }
+.zring circle { fill: none; stroke: rgba(255,255,255,.16); stroke-width: 1; }
+.zn text { fill: rgba(255,255,255,.72); font-family: var(--font-t); font-size: 17px; font-weight: 600; transition: fill .3s; }
+.zl-line { stroke: rgba(255,255,255,.28); stroke-width: 1.3; stroke-dasharray: 4 5; transition: stroke .3s, stroke-width .3s; }
+.zl-dot { fill: #8f93c9; stroke: var(--navy); stroke-width: 3; transition: fill .3s, r .3s; }
+.zn.on .zl-line { stroke: var(--amber); stroke-width: 2; stroke-dasharray: none; }
+.zn.on .zl-dot { fill: var(--amber); r: 10; }
+.zn.on text { fill: #fff; }
+.zcore { fill: var(--amber); }
+.zpulse { fill: none; stroke: var(--amber); stroke-width: 2; transform-box: fill-box; transform-origin: center; animation: zp 2.6s ease-out infinite; }
+@keyframes zp { 0% { transform: scale(1); opacity: .9; } 100% { transform: scale(3.4); opacity: 0; } }
+.zbase text { fill: #fff; font-family: var(--font-d); font-weight: 700; font-size: 20px; }
+.zbase .zsub { fill: var(--mut-d); font-family: var(--font-t); font-weight: 500; font-size: 14px; }
+.zmap-note { margin: .4rem 0 0; font-size: .8rem; color: var(--mut-d); text-align: right; }
+@media (prefers-reduced-motion: reduce) { .zpulse { animation: none; opacity: .5; } }
+
+/* ---- modulo moderno ---- */
+.fg-txt .sub { margin-top: 1rem; }
+.fg-pts { list-style: none; margin: 1.5rem 0 1.6rem; padding: 0; display: grid; gap: .7rem; }
+.fg-pts li { display: flex; align-items: center; gap: .8rem; font-weight: 600; color: var(--ink); }
+.fg-pts svg { width: 26px; height: 26px; padding: 5px; border-radius: 50%; background: var(--amber); color: var(--navy-deep); flex: none; }
+.form { padding: 0; overflow: hidden; border-radius: 16px; border: 1px solid var(--line-l); box-shadow: 0 30px 80px rgba(10,10,44,.12); gap: 0; }
+.form > * { margin-inline: clamp(1.2rem, 3vw, 2.2rem); }
+.form-top { margin: 0; padding: 1.2rem clamp(1.2rem, 3vw, 2.2rem); background: var(--navy); color: #fff; display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: .3rem 1rem; border-bottom: 3px solid var(--amber); }
+.form-top b { font-family: var(--font-d); font-size: 1.15rem; letter-spacing: -.01em; }
+.form-top span { font-size: .85rem; color: var(--mut-d); }
+.form > fieldset { margin-top: 1.5rem; }
+.form > .f-row, .form > label.f { margin-top: 1.2rem; }
+.f-row { display: grid; gap: 1.2rem; }
+@media (min-width: 560px) { .f-row { grid-template-columns: 1fr 1fr; } }
+.f > span, .f legend { text-transform: none; letter-spacing: .01em; font-size: .88rem; font-weight: 700; color: var(--ink); }
+.f input[type="text"], .f input[type="tel"], .f textarea { background: #f2f4fb; border: 1.5px solid transparent; border-radius: 10px; padding: .85rem 1rem; font-size: 1rem; transition: border-color .25s, background .25s, box-shadow .25s; }
+.f input::placeholder, .f textarea::placeholder { color: #8b8fad; }
+.f input:focus, .f textarea:focus { background: #fff; border-color: var(--azure-d); box-shadow: 0 0 0 4px rgba(31,127,214,.14); }
+.f input.err { border-color: #d93025; background: #fff6f5; }
+.opts { display: grid; grid-template-columns: repeat(auto-fit, minmax(6.4rem, 1fr)); gap: .6rem; }
+.opt span { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: .45rem; padding: .9rem .4rem; border: 1.5px solid var(--line-l); border-radius: 12px; font-weight: 600; font-size: .9rem; text-align: center; background: #fff; transition: background .25s, color .25s, border-color .25s, transform .25s var(--ease), box-shadow .25s; }
+.opt span svg { width: 26px; height: 26px; color: var(--azure-d); transition: color .25s; }
+.opt:hover span { border-color: var(--navy); transform: translateY(-2px); }
+.opt input:checked + span { background: var(--navy); color: #fff; border-color: var(--navy); box-shadow: 0 10px 24px rgba(17,17,77,.25); }
+.opt input:checked + span svg { color: var(--amber); }
+.form-actions { margin-top: 1.4rem; display: block; }
+.form-actions .btn { width: 100%; justify-content: center; }
+.form-note { margin-top: .9rem; margin-bottom: 1.4rem; text-align: center; }
+.form-err { margin-top: .6rem; margin-bottom: 0; }
+/* ---- correzioni: marchio, titolo servizi, schermi bassi ---- */
+.brand-name { text-transform: uppercase; font-weight: 700; letter-spacing: .07em; font-size: 1.2rem; }
+.brand-name small { text-transform: uppercase; letter-spacing: .3em; }
+#servizi .h2 { font-size: clamp(1.7rem, 3.4vw, 2.7rem); margin-top: .5rem; }
+@media (min-width: 1000px) and (max-height: 780px) {
+  #servizi .h2, .lab-stick .h2 { font-size: clamp(1.4rem, 2.4vw, 1.9rem); margin-top: 0; }
+  .lab-stick .head { margin-bottom: .5rem; }
+  .lab-stick { padding-top: .3rem; justify-content: flex-start; }
+}
+@media (min-width: 1000px) and (max-height: 620px) {
+  #servizi .h2, .lab-stick .h2 { font-size: 1.25rem; }
+  .lab-stick .head { margin-bottom: .3rem; }
+}
+@media (max-width: 560px) { .zlist button { padding: .65rem .8rem; gap: .55rem; } .zlist b { font-size: .92rem; line-height: 1.15; } }
+@media (min-width: 980px) { .zmap-fig svg { max-height: calc(100svh - 200px); margin-inline: auto; } }
+/* ---- footer: dati legali su righe ordinate ---- */
+.f-bottom { align-items: flex-end; }
+.f-legal p { margin: 0; font-family: var(--font-t); font-size: .88rem; line-height: 1.65; color: rgba(246,252,252,.55); letter-spacing: 0; text-transform: none; }
+.f-legal .f-co { color: rgba(246,252,252,.85); font-weight: 600; }
+.f-priv { font-size: .88rem; text-decoration: underline; text-underline-offset: 3px; }
+.rev-sel { margin-top: .8rem; color: var(--mut-l); }
